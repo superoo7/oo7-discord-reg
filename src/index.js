@@ -61,7 +61,7 @@ Type \`${config.trigger}last\` to check your last message.
         break;
       case 'reg':
         if (args.length === 1) {
-          if (args[0].match(/^[a-z][a-z0-9\-]+$/)) {
+          if (args[0].match(/^[a-z][a-z0-9\-\.]+$/)) {
             let regMsg = async () => {
               let discordMessage = await registration(
                 currentUsername,
