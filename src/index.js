@@ -61,36 +61,48 @@ Type \`${config.trigger}last\` to check your last message.
         break;
       case 'reg':
         if (args.length === 1) {
-          let regMsg = async () => {
-            let discordMessage = await registration(
-              currentUsername,
-              currentUserId,
-              args[0]
+          if (args[0].match(/^[a-z][a-z0-9\-]+$/)) {
+            let regMsg = async () => {
+              let discordMessage = await registration(
+                currentUsername,
+                currentUserId,
+                args[0]
+              );
+              return discordMessage;
+            };
+            regMsg().then(res => {
+              console.log('discord msg: ', res);
+              msg.reply(res);
+            });
+          } else {
+            msg.reply(
+              'Your steem username format is wrong (should start with letter, all lowercase, only can contain lowercase letters, numbers and dash)'
             );
-            return discordMessage;
-          };
-          regMsg().then(res => {
-            console.log('discord msg: ', res);
-            msg.reply(res);
-          });
+          }
         } else {
           msg.reply('Please follow the format');
         }
         break;
       case 'update':
         if (args.length === 1) {
-          let updateMsg = async () => {
-            let discordMessage = await update(
-              currentUsername,
-              currentUserId,
-              args[0]
+          if (args[0].match(/^[a-z][a-z0-9\-]+$/)) {
+            let updateMsg = async () => {
+              let discordMessage = await update(
+                currentUsername,
+                currentUserId,
+                args[0]
+              );
+              return discordMessage;
+            };
+            updateMsg().then(res => {
+              console.log('discord msg: ', res);
+              msg.reply(res);
+            });
+          } else {
+            msg.reply(
+              'Your steem username format is wrong (should start with letter, all lowercase, only can contain lowercase letters, numbers and dash)'
             );
-            return discordMessage;
-          };
-          updateMsg().then(res => {
-            console.log('discord msg: ', res);
-            msg.reply(res);
-          });
+          }
         } else {
           msg.reply('Please follow the format');
         }
