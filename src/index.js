@@ -85,7 +85,7 @@ Type \`${config.trigger}last\` to check your last message.
         break;
       case 'update':
         if (args.length === 1) {
-          if (args[0].match(/^[a-z][a-z0-9\-]+$/)) {
+          if (args[0].match(/^[a-z][a-z0-9\-\.]+$/)) {
             let updateMsg = async () => {
               let discordMessage = await update(
                 currentUsername,
