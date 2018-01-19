@@ -13,6 +13,7 @@ import { getDateTimeFromTimestamp, timeConvertMessage } from './util';
 
 // Controller
 import { registration, update, lastMessage } from './controller/user';
+import displayUser from './controller/display_user';
 
 // Database
 import db from './db';
@@ -117,7 +118,10 @@ Type \`${config.trigger}last\` to check your last message.
 client.login(process.env.DISCORD_TOKEN); // Start server
 http
   .createServer(function(request, response) {
-    response.writeHead(200, { 'Content-Type': 'text/html' });
-    response.end('superoo7 bot still alive', 'utf-8');
+    displayUser().then(user => {
+      console.log(user);
+      response.writeHead(200, { 'Content-Type': 'text/html' });
+      response.end(`<h1>superoo7 bot still alive!</h1>${user}}`, 'utf-8');
+    });
   })
   .listen(process.env.PORT || 5000);
