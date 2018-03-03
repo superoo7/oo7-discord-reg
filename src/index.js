@@ -14,6 +14,10 @@ import {
   timeConvertMessage
 } from './util';
 
+// Moderator
+import mod from './moderator';
+import moderator from '../../moderator.json';
+
 // Controller
 import {
   registration,
@@ -37,9 +41,21 @@ client.on('ready', () => {
 
 // on message receive
 client.on('message', msg => {
-  if (msg.channel.id !== config.channelId) {
+  let channelId = msg.channel.id;
+  let userId = msg.author.id;
+
+  if (
+    (channelId !== config.channelId &&
+      channelId !== config.modId) ||
+    userId === config.botId
+  ) {
     return;
-  } else {
+  } else if (msg.channel.id === config.channelId) {
+    if (!!moderator.maintenance) {
+      msg.reply('The bot is under maintenance');
+      return;
+    }
+
     // GET INFO FOR MESSAGE
     let {
       id: currentMessageId,
@@ -141,6 +157,10 @@ Type \`${config.trigger}last\` to check your last message.
           break;
       }
     }
+  } else {
+    // MODERATOR
+    // GET INFO FOR MESSAGE
+    mod(msg);
   }
 });
 
