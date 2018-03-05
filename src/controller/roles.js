@@ -33,4 +33,17 @@ const changeRole = (discordId, role) => {
     .catch(err => 'Error');
 };
 
-export { changeRole };
+const findRole = discordId => {
+  return User.findOne(
+    { discordid: discordId },
+    (err, user) => {
+      if (err) {
+        console.log(err);
+        return 'Role not found';
+      }
+      return user.roles;
+    }
+  ).then(data => data);
+};
+
+export { changeRole, findRole };

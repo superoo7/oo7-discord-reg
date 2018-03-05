@@ -25,6 +25,7 @@ import {
   lastMessage
 } from './controller/user';
 import displayUser from './controller/display_user';
+import { findRole } from './controller/roles';
 
 // Database
 import db from './db';
@@ -137,18 +138,22 @@ Type \`${config.trigger}last\` to check your last message.
           }
           break;
         case 'last':
-          let lastMessageMsg = async () => {
-            let discordMessage = await lastMessage(
-              currentUserId
-            );
-            return discordMessage;
-          };
+          let lastMessageMsg = async () =>
+            await lastMessage(currentUserId);
           lastMessageMsg()
             .then(res => {
               console.log('discord msg: ', res);
               msg.reply(res);
             })
             .catch(err => console.log('ERR'));
+          break;
+        case 'role':
+          let checkRole = async () =>
+            await findRole(currentUserId);
+          checkRole().then(res => {
+            console.log(res.roles);
+            msg.reply(res.roles);
+          });
           break;
         default:
           msg.reply(
