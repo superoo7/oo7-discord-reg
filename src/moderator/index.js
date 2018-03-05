@@ -11,6 +11,7 @@ import displayUser from '../controller/display_user';
 
 // MOD COMPONENT
 import maintenance from './maintenance';
+import roles from './roles';
 
 let mod = msg => {
   // GET INFO FOR MESSAGE
@@ -45,11 +46,8 @@ let mod = msg => {
       case 'unban':
         msg.reply('unban');
         break;
-      case 'upgrade':
-        msg.reply('upgrade');
-        break;
-      case 'downgrade':
-        msg.reply('downgrade');
+      case 'roles':
+        roles(msg, args);
         break;
       default:
         msg.reply(

@@ -1,7 +1,10 @@
 {
-  "mongoUrl": "mongodb://localhost:27017/stephard-prod",
+  "mongoUrl":
+    "mongodb://174.138.28.63:27017/teammalaysia-prod",
   "trigger": "*",
-  "botId": "399088553629450240",
+  "botId": "402356589966786561",
+  "channelId": "403149397099020289",
+  "modId": "419069300129792001",
   "timeAllowed": "64800",
   "whitelistId": [],
   "adminUser": {
