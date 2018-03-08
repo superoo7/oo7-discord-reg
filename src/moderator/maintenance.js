@@ -1,8 +1,8 @@
 import fs from 'fs';
 import config from '../config.json';
-import moderator from '../../../moderator.json';
+import moderator from '/root/moderator.json';
 
-let location = '../../../moderator.json';
+let location = '/root/moderator.jsonn';
 
 let maintenance = (msg, args = ['']) => {
   if (args.length === 0) {

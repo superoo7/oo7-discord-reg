@@ -13,7 +13,7 @@ import usr from './user';
 
 // Moderator
 import mod from './moderator';
-import moderator from '../../moderator.json';
+import moderator from '/root/moderator.json';
 
 // Database
 import db from './db';
