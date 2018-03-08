@@ -7,10 +7,10 @@ let userSchema = new Schema({
   discordid: { type: String, required: true, unique: true },
   steemname: { type: String, required: true },
   roles: {
-        type: String,
-        default: 'user'
-    },
-  lastpostdatetime: { type: Number }
+    type: String,
+    default: 'user'
+  },
+  lastpostdatetime: [Number]
 });
 
 module.exports = mongoose.model('User', userSchema);
