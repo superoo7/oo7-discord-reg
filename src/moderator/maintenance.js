@@ -2,7 +2,7 @@ import fs from 'fs';
 import config from '../config.json';
 import moderator from '/root/moderator.json';
 
-let location = '/root/moderator.jsonn';
+let location = '/root/moderator.json';
 
 let maintenance = (msg, args = ['']) => {
   if (args.length === 0) {

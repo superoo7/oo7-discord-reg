@@ -12,6 +12,7 @@ import displayUser from '../controller/display_user';
 // MOD COMPONENT
 import maintenance from './maintenance';
 import roles from './roles';
+import info from './info';
 
 let mod = msg => {
   // GET INFO FOR MESSAGE
@@ -35,7 +36,18 @@ let mod = msg => {
     console.log(args);
     switch (cmd) {
       case 'help':
-        msg.reply('ask <@!206360732818735104> for help.');
+        msg.reply(`
+\`${
+          config.trigger
+        }maintenance <on/off>\` to turn on/off maintenance mode
+\`${
+          config.trigger
+        }roles @somebody <sponsor/user>\` to change a person role
+\`${
+          config.trigger
+        }info @somebody\` to check that person's information
+or ask <@!206360732818735104> for help.
+`);
         break;
       case 'maintenance':
         maintenance(msg, args);
@@ -48,6 +60,9 @@ let mod = msg => {
         break;
       case 'roles':
         roles(msg, args);
+        break;
+      case 'info':
+        info(msg, args);
         break;
       default:
         msg.reply(
