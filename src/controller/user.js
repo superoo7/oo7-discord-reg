@@ -11,7 +11,8 @@ const registration = (
   let user = new User({
     name: discordName,
     discordid: discordId,
-    steemname: steemName
+    steemname: steemName,
+    lastpostdatetime: [0]
   });
 
   let result = user

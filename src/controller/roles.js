@@ -11,6 +11,14 @@ const changeRole = (discordId, role) => {
       }
       console.log('success');
       user.roles = role.toLowerCase();
+      if (role.toLowerCase === 'user') {
+        user.lastpostdatetime = [user.lastpostdatetime[0]];
+      } else if (role.toLowerCase() === 'sponsor') {
+        user.lastpostdatetime = [
+          0,
+          user.lastpostdatetime[0]
+        ];
+      }
       let result = user
         .save(err => {
           if (err) {
