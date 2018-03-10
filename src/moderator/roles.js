@@ -6,7 +6,8 @@ let roles = (msg, args = ['']) => {
     return;
   } else if (
     args[1].toLowerCase() !== 'user' &&
-    args[1].toLowerCase() !== 'sponsor'
+    args[1].toLowerCase() !== 'sponsor' &&
+    args[1].toLowerCase() !== 'ban'
   ) {
     console.log(args[1]);
     msg.reply('Invalid role (user / sponsor)');

@@ -88,7 +88,10 @@ const lastMessage = discordId => {
     .then(data => {
       if (!!data) {
         console.log(data);
-        if (data.roles === 'sponsor') {
+
+        if (data.roles === 'ban') {
+          return `You are ban, please contact moderator of #teammalaysia`;
+        } else if (data.roles === 'sponsor') {
           let time1 = data.lastpostdatetime[0];
           let time2 = data.lastpostdatetime[1];
           console.log(time1, time2);
