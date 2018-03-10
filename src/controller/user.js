@@ -3,7 +3,11 @@ import User from '../model/user';
 import { timeConvertMessage } from '../util';
 import convert from 'convert-seconds';
 
-const registration = (discordName, discordId, steemName) => {
+const registration = (
+  discordName,
+  discordId,
+  steemName
+) => {
   let user = new User({
     name: discordName,
     discordid: discordId,
@@ -20,7 +24,9 @@ const registration = (discordName, discordId, steemName) => {
       return;
     })
     .then(data => {
-      return `Successfully created account with @${data.steemname}`;
+      return `Successfully created account with @${
+        data.steemname
+      }`;
     })
     .catch(err => {
       return 'Error on registering account. It could be you already registered.';
@@ -29,55 +35,78 @@ const registration = (discordName, discordId, steemName) => {
 };
 
 const update = (discordName, discordId, steemName) => {
-  return User.findOne({ discordid: discordId }, (err, user) => {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    console.log('success');
-    user.steemname = steemName;
-    let result = user
-      .save(err => {
-        if (err) {
-          console.log(err);
+  return User.findOne(
+    { discordid: discordId },
+    (err, user) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      console.log('success');
+      user.steemname = steemName;
+      let result = user
+        .save(err => {
+          if (err) {
+            console.log(err);
+            return;
+          }
+          console.log('success');
           return;
-        }
-        console.log('success');
-        return;
-      })
-      .then(data => {
-        return;
-      })
-      .catch(err => {
-        return;
-      });
-    return result;
-  })
+        })
+        .then(data => {
+          return;
+        })
+        .catch(err => {
+          return;
+        });
+      return result;
+    }
+  )
     .then(
       data =>
-        `Successfully updated account from @${data.steemname} to @${steemName}`
+        `Successfully updated account from @${
+          data.steemname
+        } to @${steemName}`
     )
     .catch(err => 'Error');
 };
 
 const lastMessage = discordId => {
-  return User.findOne({ discordid: discordId }, (err, user) => {
-    if (err) {
-      console.log(err);
+  return User.findOne(
+    { discordid: discordId },
+    (err, user) => {
+      if (err) {
+        console.log(err);
+        return;
+      }
+      if (user) {
+        return user;
+      }
       return;
     }
-    if (user) {
-      return user;
-    }
-    return;
-  })
+  )
     .then(data => {
       if (!!data) {
-        return !!data.lastpostdatetime
-          ? `Your last post is at ${timeConvertMessage(
-              convert(Math.floor((Date.now() - data.lastpostdatetime) / 1000))
-            )} ago`
-          : `You have not posted on post promo channel`;
+        console.log(data);
+        if (data.roles === 'sponsor') {
+          let time1 = data.lastpostdatetime[0];
+          let time2 = data.lastpostdatetime[1];
+          console.log(time1, time2);
+          return `You are a sponsor\nYour last post is at\n\`${timeConvertMessage(
+            convert(Math.floor((Date.now() - time1) / 1000))
+          )} ago\`\nand\n\`${timeConvertMessage(
+            convert(Math.floor((Date.now() - time2) / 1000))
+          )} ago\``;
+        } else {
+          let time = data.lastpostdatetime[0];
+          return !!time
+            ? `Your last post is at \`${timeConvertMessage(
+                convert(
+                  Math.floor((Date.now() - time) / 1000)
+                )
+              )} ago\``
+            : `You have not posted on post promo channel`;
+        }
       }
       return `Cannot find last post, you are not yet register`;
     })

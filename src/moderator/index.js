@@ -45,7 +45,7 @@ let mod = msg => {
         }roles @somebody <sponsor/user>\` to change a person role
 \`${
           config.trigger
-        }info @somebody\` to check that person's information
+        }info @somebody\` to check that person's informatin
 or ask <@!206360732818735104> for help.
 `);
         break;
