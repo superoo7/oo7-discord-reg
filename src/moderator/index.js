@@ -13,6 +13,7 @@ import displayUser from '../controller/display_user';
 import maintenance from './maintenance';
 import roles from './roles';
 import info from './info';
+import delegate from './delegation';
 
 let mod = msg => {
   // GET INFO FOR MESSAGE
@@ -46,17 +47,15 @@ let mod = msg => {
 \`${
           config.trigger
         }info @somebody\` to check that person's information
+\`${config.trigger}delegation\`to check delegation
 or ask <@!206360732818735104> for help.
 `);
         break;
       case 'maintenance':
         maintenance(msg, args);
         break;
-      case 'ban':
-        msg.reply('ban');
-        break;
-      case 'unban':
-        msg.reply('unban');
+      case 'delegation':
+        delegate(msg, args);
         break;
       case 'roles':
         roles(msg, args);
