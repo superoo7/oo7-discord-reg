@@ -20,9 +20,8 @@ let upvotePost = (
       if (upvoteData === 'ERROR') {
         msg.reply('Error on upvoting');
       } else {
-        console.log(postData.msg);
         msg.reply(`Upvoted`);
-        return testingPost(author, permlink, moderator);
+        testingPost(author, permlink, moderator);
       }
     })
     .then(() => msg.reply('Commented'))
