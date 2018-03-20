@@ -65,7 +65,7 @@ or ask <@!206360732818735104> for help.
         info(msg, args);
         break;
       case 'upvote':
-        if (!isNan(args[1])) {
+        if (!!args[1]) {
           let author = args[0].split(/[\/#]/)[4].substr(1);
           let permlink = args[0].split(/[\/#]/)[5];
           let weightage = parseInt(args[1]) * 100;
