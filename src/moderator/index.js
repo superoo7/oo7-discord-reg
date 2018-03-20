@@ -14,6 +14,7 @@ import maintenance from './maintenance';
 import roles from './roles';
 import info from './info';
 import delegate from './delegation';
+import upvotePost from './upvote';
 
 let mod = msg => {
   // GET INFO FOR MESSAGE
@@ -62,6 +63,28 @@ or ask <@!206360732818735104> for help.
         break;
       case 'info':
         info(msg, args);
+        break;
+      case 'upvote':
+        if (!isNan(args[1])) {
+          let author = args[0].split(/[\/#]/)[4].substr(1);
+          let permlink = args[0].split(/[\/#]/)[5];
+          let weightage = parseInt(args[1]) * 100;
+          if (author.charAt(0) === '@' && !!permlink) {
+            upvotePost(
+              author,
+              permlink,
+              weightage,
+              currentUserId,
+              msg
+            );
+          } else {
+            msg.reply('invalid format on the link');
+          }
+        } else {
+          msg.reply(
+            'invalid format, please add weightage at the end'
+          );
+        }
         break;
       default:
         msg.reply(
