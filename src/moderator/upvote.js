@@ -21,7 +21,7 @@ let upvotePost = (
         msg.reply('Error on upvoting');
       } else {
         msg.reply(`Upvoted`);
-        testingPost(author, permlink, moderator);
+        return testingPost(author, permlink, moderator);
       }
     })
     .then(() => msg.reply('Commented'))
