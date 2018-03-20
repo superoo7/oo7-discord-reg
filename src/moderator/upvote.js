@@ -22,10 +22,9 @@ let upvotePost = (
       } else {
         console.log(postData.msg);
         msg.reply(`Upvoted`);
-        return;
+        return testingPost(author, permlink, moderator);
       }
     })
-    .then(() => testingPost(author, permlink, moderator))
     .then(() => msg.reply('Commented'))
     .catch(() => msg.reply('Error'));
 

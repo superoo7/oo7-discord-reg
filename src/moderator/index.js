@@ -50,6 +50,9 @@ let mod = msg => {
         }info @somebody\` to check that person's information
 \`${config.trigger}delegation\`to check delegation
 or ask <@!206360732818735104> for help.
+\`${
+          config.trigger
+        }upvote <steemit_link> <weightage>\` to upvote a post.
 `);
         break;
       case 'maintenance':
@@ -69,7 +72,7 @@ or ask <@!206360732818735104> for help.
           let author = args[0].split(/[\/#]/)[4].substr(1);
           let permlink = args[0].split(/[\/#]/)[5];
           let weightage = parseInt(args[1]) * 100;
-          if (author.charAt(0) === '@' && !!permlink) {
+          if (!!author && !!permlink) {
             upvotePost(
               author,
               permlink,
